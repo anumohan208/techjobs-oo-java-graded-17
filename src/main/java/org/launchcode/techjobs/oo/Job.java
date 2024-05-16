@@ -45,7 +45,32 @@ public class Job {
     public int hashCode() {
         return Objects.hash(getId());
     }
-
+    public String toString(){
+        if (name == null && employer == null && location == null && positionType == null && coreCompetency == null) {
+            return "OOPS! This job does not seem to exist.";
+        }
+//        return System.lineSeparator()+
+//                "\nID: "+id+
+//                "\nName: "+(name!=null ? name : "Data not available")+
+//                "\nEmployer: "+(employer!=null ? employer : "Data not available")+
+//                "\nLocation: "+(location!=null? location: "Data not available")+
+//                "\nPosition Type: "+(positionType!=null ? positionType : "Data not available")+
+//                "\nCore Competency: "+(coreCompetency!=null? coreCompetency : "Data not available")+
+//                System.lineSeparator();
+        return String.format(
+                "%sID: %d%n" +
+                        "Name: %s%n" +
+                        "Employer: %s%n" +
+                        "Location: %s%n" +
+                        "Position Type: %s%n" +
+                        "Core Competency: %s%s",
+                System.lineSeparator(), id, (name != null && !name.isEmpty() ? name : "Data not available"),
+                (employer != null && !employer.getValue().isEmpty()? employer : "Data not available"),
+                (location != null && !location.getValue().isEmpty()? location : "Data not available"),
+                (positionType != null && !positionType.getValue().isEmpty()? positionType : "Data not available"),
+                (coreCompetency != null && !coreCompetency.getValue().isEmpty() ? coreCompetency : "Data not available"),
+                System.lineSeparator()).replace("\r\n", "\n");
+    }
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
 
